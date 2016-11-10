@@ -4,5 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:XamlBrewer.Uwp.BackDropControl.Sample"
     RequestedTheme="Light">
-
+    <Application.Resources>
+        <!-- Theme resources -->
+        <ResourceDictionary Source="Services/Theming/Theme.xaml" />
+    </Application.Resources>
 </Application>
