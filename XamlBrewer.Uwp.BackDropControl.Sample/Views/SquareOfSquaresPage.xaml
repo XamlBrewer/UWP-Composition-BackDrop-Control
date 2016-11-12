@@ -7,25 +7,11 @@
       mc:Ignorable="d">
 
     <Grid Background="{StaticResource PageBackgroundBrush}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="20" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="20" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-
-        <Image Grid.Row="1"
-               Grid.ColumnSpan="3"
-               Stretch="Uniform"
+        
+        <Image Stretch="Uniform"
                Source="ms-appx:///Assets/butterflies.png" />
 
-<controls:SquareOfSquares Grid.Row="1" Grid.Column="1"></controls:SquareOfSquares>
+        <controls:SquareOfSquares x:Name="SquareOfSquares" />
 
     </Grid>
 </Page>
