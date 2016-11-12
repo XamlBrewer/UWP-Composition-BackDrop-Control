@@ -1,4 +1,4 @@
-﻿<Page x:Class="XamlBrewer.Uwp.BackDropControl.Sample.MainPage"
+﻿<Page x:Class="XamlBrewer.Uwp.BackDropControl.Sample.SquareOfSquaresPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:controls="using:XamlBrewer.Uwp.Controls"
@@ -25,17 +25,7 @@
                Stretch="Uniform"
                Source="ms-appx:///Assets/butterflies.png" />
 
-        <controls:BackDrop x:Name="BackDrop" BlurAmount="{Binding ElementName=BlurAmountSlider, Path=Value, Mode=TwoWay}"
-                           TintColor="BlueViolet"
-                           Grid.Row="1"
-                           Grid.Column="1" />
-        <Slider x:Name="BlurAmountSlider"
-                Value="10"
-                Grid.Row="2"
-                Grid.Column="1" />
-        <Slider x:Name="TintColorSlider"
-                ValueChanged="TintColorSlider_OnValueChanged"
-                Grid.Row="3"
-                Grid.Column="1" />
+<controls:SquareOfSquares Grid.Row="1" Grid.Column="1"></controls:SquareOfSquares>
+
     </Grid>
 </Page>

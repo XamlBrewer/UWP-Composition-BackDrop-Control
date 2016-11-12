@@ -113,6 +113,8 @@
     <EmbeddedResource Include="Properties\XamlBrewer.Uwp.Controls.rd.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\MoreNoise.jpg" />
+    <Content Include="Assets\MoreNoise.png" />
     <Content Include="Assets\Noise.jpg" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
