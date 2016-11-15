@@ -8,7 +8,7 @@ namespace XamlBrewer.Uwp.BackDropControl.Sample
     {
         public SquareOfSquaresPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             Loaded += SquareOfSquaresPage_Loaded;
         }
 

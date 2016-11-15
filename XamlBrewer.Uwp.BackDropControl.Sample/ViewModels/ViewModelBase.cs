@@ -2,7 +2,7 @@
 
 namespace Mvvm
 {
-    class ViewModelBase : BindableBase
+    internal class ViewModelBase : BindableBase
     {
         private static readonly ObservableCollection<MenuItem> AppMenu = new ObservableCollection<MenuItem>();
 

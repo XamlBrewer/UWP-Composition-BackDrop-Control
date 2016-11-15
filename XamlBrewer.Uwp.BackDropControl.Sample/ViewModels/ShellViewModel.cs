@@ -3,7 +3,7 @@ using XamlBrewer.Uwp.BackDropControl.Sample;
 
 namespace Mvvm
 {
-    class ShellViewModel : ViewModelBase
+    internal class ShellViewModel : ViewModelBase
     {
         public ShellViewModel()
         {

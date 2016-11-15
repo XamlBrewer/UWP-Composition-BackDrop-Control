@@ -50,7 +50,8 @@
                                         MinWidth="{TemplateBinding MinWidth}"
                                         MinHeight="{TemplateBinding MinHeight}">
                                     <Grid x:Name="DialogSpace"
-                                          VerticalAlignment="Stretch">
+                                          VerticalAlignment="Stretch"
+                                          Padding="0 20">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto" />
                                             <RowDefinition Height="*" />
@@ -147,21 +148,20 @@
 
         <ContentDialog x:Name="ContentDialog"
                        PrimaryButtonText="Redeem my prize"
-                       SecondaryButtonText="Tell me more"
-                       FullSizeDesired="True">
+                       SecondaryButtonText="Tell me more">
             <ContentDialog.TitleTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
                         <Image Source="ms-appx:///Assets/trophy.png"
-                               Width="50"
-                               Height="50"
+                               Width="40"
+                               Height="40"
                                Margin="10 0" />
                         <TextBlock Text="Congratulations"
                                    FontSize="32" />
                     </StackPanel>
                 </DataTemplate>
             </ContentDialog.TitleTemplate>
-            <Grid>
+            <Grid Margin="0 20 0 0">
                 <StackPanel Padding="10">
                     <TextBlock TextWrapping="WrapWholeWords">
                     <Run>You won. This is not a joke.</Run>

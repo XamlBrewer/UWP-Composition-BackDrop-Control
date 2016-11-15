@@ -4,7 +4,7 @@ using Windows.UI.Xaml.Controls;
 
 namespace Mvvm
 {
-    class MenuItem : BindableBase
+    internal class MenuItem : BindableBase
     {
         private Symbol _glyph;
         private string _text;

@@ -8,14 +8,20 @@ using Microsoft.Graphics.Canvas.Effects;
 
 namespace XamlBrewer.Uwp.Controls
 {
+    /// <summary>
+    /// A lightweight control to add blur and tint effect.
+    /// </summary>
     public class BackDrop : Control
     {
-        Compositor _compositor;
-        readonly SpriteVisual _blurVisual;
-        readonly CompositionBrush _blurBrush;
-        readonly Visual _rootVisual;
-        readonly CompositionSurfaceBrush _noiseBrush;
+        private Compositor _compositor;
+        private readonly SpriteVisual _blurVisual;
+        private readonly CompositionBrush _blurBrush;
+        private readonly Visual _rootVisual;
+        private readonly CompositionSurfaceBrush _noiseBrush;
 
+        /// <summary>
+        /// The blur amount property.
+        /// </summary>
         public static readonly DependencyProperty BlurAmountProperty =
             DependencyProperty.Register(
                 nameof(BlurAmount),
@@ -23,6 +29,9 @@ namespace XamlBrewer.Uwp.Controls
                 typeof(BackDrop),
                 new PropertyMetadata(10d, OnBlurAmountChanged));
 
+        /// <summary>
+        /// The tint color property.
+        /// </summary>
         public static readonly DependencyProperty TintColorProperty = 
             DependencyProperty.Register(
                 nameof(TintColor), 
@@ -30,12 +39,9 @@ namespace XamlBrewer.Uwp.Controls
                 typeof(BackDrop), 
                 new PropertyMetadata(Colors.Transparent, OnTintColorChanged));
 
-        public Color TintColor
-        {
-            get { return (Color) GetValue(TintColorProperty); }
-            set { SetValue(TintColorProperty, value); }
-        }
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BackDrop"/> class.
+        /// </summary>
         public BackDrop()
         {
             _rootVisual = ElementCompositionPreview.GetElementVisual(this);
@@ -62,6 +68,29 @@ namespace XamlBrewer.Uwp.Controls
             set { SetValue(BlurAmountProperty, value); }
         }
 
+        /// <summary>
+        /// Gets or sets the tint color.
+        /// </summary>
+        /// <value>The tint color.</value>
+        public Color TintColor
+        {
+            get { return (Color)GetValue(TintColorProperty); }
+            set { SetValue(TintColorProperty, value); }
+        }
+
+        private Compositor Compositor
+        {
+            get
+            {
+                return _compositor;
+            }
+
+            set
+            {
+                _compositor = value;
+            }
+        }
+
         private static void OnBlurAmountChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var backDrop = d as BackDrop;
@@ -80,19 +109,6 @@ namespace XamlBrewer.Uwp.Controls
 
             backDrop._blurBrush.Properties.InsertColor("Color.Color", (Color)e.NewValue);
             backDrop._rootVisual.Properties.InsertColor(nameof(TintColor), (Color)e.NewValue);
-        }
-
-        private Compositor Compositor
-        {
-            get
-            {
-                return _compositor;
-            }
-
-            set
-            {
-                _compositor = value;
-            }
         }
 
         private async void OnLoading(FrameworkElement sender, object args)
@@ -153,10 +169,9 @@ namespace XamlBrewer.Uwp.Controls
 
             var factory = Compositor.CreateEffectFactory(
                 finalEffect,
-                new[] { "Blur.BlurAmount", "Color.Color" }
-                );
+                new[] { "Blur.BlurAmount", "Color.Color" });
 
-            CompositionEffectBrush brush = factory.CreateBrush();
+            var brush = factory.CreateBrush();
             brush.SetSourceParameter("NoiseImage", _noiseBrush);
             return brush;
         }

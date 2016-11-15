@@ -8,7 +8,7 @@ namespace XamlBrewer.Uwp.BackDropControl.Sample
     {
         public MainPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         private void TintColorSlider_OnValueChanged(object sender, RangeBaseValueChangedEventArgs e)

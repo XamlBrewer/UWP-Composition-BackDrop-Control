@@ -8,12 +8,12 @@ namespace XamlBrewer.Uwp.BackDropControl.Sample
     {
         public DialogPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         private async void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            ContentDialogResult result = await ContentDialog.ShowAsync();
+            await ContentDialog.ShowAsync();
         }
     }
 }

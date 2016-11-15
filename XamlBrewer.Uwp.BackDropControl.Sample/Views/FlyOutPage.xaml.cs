@@ -6,7 +6,7 @@ namespace XamlBrewer.Uwp.BackDropControl.Sample
     {
         public FlyOutPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }
