@@ -22,7 +22,7 @@ namespace XamlBrewer.Uwp.BackDropControl.Sample
                     Height = square.ActualHeight,
                     Width = square.ActualWidth,
                     TintColor = square.RandomColor(),
-                    BlurAmount = random.Next(50)
+                    BlurAmount = random.Next(40)
                 };
             }
         }

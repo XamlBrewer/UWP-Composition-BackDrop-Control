@@ -7,35 +7,20 @@
       mc:Ignorable="d">
 
     <Grid Background="{StaticResource PageBackgroundBrush}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="20" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="20" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-
-        <Image Grid.Row="1"
-               Grid.ColumnSpan="3"
-               Stretch="Uniform"
+        <Image Stretch="Uniform"
                Source="ms-appx:///Assets/butterflies.png" />
-
-        <controls:BackDrop x:Name="BackDrop" BlurAmount="{Binding ElementName=BlurAmountSlider, Path=Value, Mode=TwoWay}"
-                           TintColor="BlueViolet"
-                           Grid.Row="1"
-                           Grid.Column="1" />
-        <Slider x:Name="BlurAmountSlider"
-                Value="10"
-                Grid.Row="2"
-                Grid.Column="1" />
-        <Slider x:Name="TintColorSlider"
-                ValueChanged="TintColorSlider_OnValueChanged"
-                Grid.Row="3"
-                Grid.Column="1" />
+        <controls:BackDrop x:Name="BackDrop"
+                           BlurAmount="{Binding ElementName=BlurAmountSlider, Path=Value, Mode=TwoWay}"
+                           Margin="100" />
+        <StackPanel VerticalAlignment="Bottom"
+                    Margin="100"
+                    Padding="40 0">
+            <Slider x:Name="BlurAmountSlider"
+                    Header="BlurAmount" />
+            <Slider x:Name="TintColorSlider"
+                    Header="TintColor"
+                    ValueChanged="TintColorSlider_OnValueChanged" />
+        </StackPanel>
     </Grid>
 </Page>
+

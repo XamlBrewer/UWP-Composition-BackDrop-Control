@@ -20,44 +20,48 @@
               Grid.Column="0">
             <controls:BackDrop BlurAmount="25"
                                TintColor="BlanchedAlmond" />
-            <StackPanel Padding="15">
-                <TextBlock TextWrapping="WrapWholeWords">
-        <Run>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor 
-             congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus 
-             malesuada libero, sit amet commodo magna eros quis urna.</Run><LineBreak />
-        <Run>Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.</Run><LineBreak />
-        <Run>Pellentesque habitant morbi tristique senectus et netus et malesuada fames 
-             ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.</Run><LineBreak />
-        <Run>Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. 
-             Mauris eget neque at sem venenatis eleifend. Ut nonummy.</Run>
-                </TextBlock>
-                <CheckBox Content="I am over 13 years of age." />
-            </StackPanel>
+            <Grid>
+                <StackPanel Padding="10">
+                    <TextBlock TextWrapping="WrapWholeWords">
+                        <Run>You won. This is not a joke.</Run>
+                        <LineBreak /><LineBreak />
+                        <Span>You are the <Italic><Bold>[Undefined]</Bold></Italic>th unique visitor of this site.</Span>
+                        <LineBreak /><LineBreak />
+                        <Run>We'll need your credit card info to cover shipping of your fantastic prize. Please confirm that you are 18 years or older.</Run>
+                    </TextBlock>
+                    <CheckBox Content="I am over 17 years of age."
+                              Margin="0 20 0 0" />
+                    <Image Source="ms-appx:///Assets/confetti.png" />
+                </StackPanel>
+            </Grid>
         </Grid>
-        
+
         <Grid Background="BlanchedAlmond"
               Width="300"
               Margin="0 100"
               Grid.Column="1">
-            <StackPanel Padding="15">
-                <TextBlock TextWrapping="WrapWholeWords">
-        <Run>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor 
-             congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus 
-             malesuada libero, sit amet commodo magna eros quis urna.</Run><LineBreak />
-        <Run>Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.</Run><LineBreak />
-        <Run>Pellentesque habitant morbi tristique senectus et netus et malesuada fames 
-             ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.</Run><LineBreak />
-        <Run>Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. 
-             Mauris eget neque at sem venenatis eleifend. Ut nonummy.</Run>
-                </TextBlock>
-                <CheckBox Content="I am over 13 years of age." />
-            </StackPanel>
+            <Grid>
+                <StackPanel Padding="10">
+                    <TextBlock TextWrapping="WrapWholeWords">
+                        <Run>You won. This is not a joke.</Run>
+                        <LineBreak /><LineBreak />
+                        <Span>You are the <Italic><Bold>[Undefined]</Bold></Italic>th unique visitor of this site.</Span>
+                        <LineBreak /><LineBreak />
+                        <Run>We'll need your credit card info to cover shipping of your fantastic prize. Please confirm that you are 18 years or older.</Run>
+                    </TextBlock>
+                    <CheckBox Content="I am over 17 years of age."
+                              Margin="0 20 0 0" />
+                    <Image Source="ms-appx:///Assets/confetti.png" />
+                </StackPanel>
+            </Grid>
         </Grid>
 
         <Button VerticalAlignment="Top"
-                HorizontalAlignment="Center"
-                Content="Open flyout" 
-                Grid.Column="0" Grid.ColumnSpan="2">
+                HorizontalAlignment="Left"
+                Content="Open flyout"
+                Margin="20"
+                Grid.Column="0"
+                Grid.ColumnSpan="2">
             <Button.Flyout>
                 <Flyout>
                     <Flyout.FlyoutPresenterStyle>
@@ -72,20 +76,20 @@
                           Width="300">
                         <controls:BackDrop BlurAmount="25"
                                            TintColor="BlanchedAlmond" />
-                        <StackPanel Padding="15">
-                            <TextBlock TextWrapping="WrapWholeWords">
-        <Run>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor 
-             congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus 
-             malesuada libero, sit amet commodo magna eros quis urna.</Run><LineBreak />
-        <Run>Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.</Run><LineBreak />
-        <Run>Pellentesque habitant morbi tristique senectus et netus et malesuada fames 
-             ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.</Run><LineBreak />
-        <Run>Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. 
-             Mauris eget neque at sem venenatis eleifend. Ut nonummy.</Run>
-                            </TextBlock>
-                            <CheckBox x:Name="ConfirmAgeCheckBox"
-                                      Content="I am over 13 years of age." />
-                        </StackPanel>
+                        <Grid>
+                            <StackPanel Padding="10">
+                                <TextBlock TextWrapping="WrapWholeWords">
+                                    <Run>You won. This is not a joke.</Run>
+                                    <LineBreak /><LineBreak />
+                                    <Span>You are the <Italic><Bold>[Undefined]</Bold></Italic>th unique visitor of this site.</Span>
+                                    <LineBreak /><LineBreak />
+                                    <Run>We'll need your credit card info to cover shipping of your fantastic prize. Please confirm that you are 18 years or older.</Run>
+                                </TextBlock>
+                                <CheckBox Content="I am over 17 years of age."
+                                          Margin="0 20 0 0" />
+                                <Image Source="ms-appx:///Assets/confetti.png" />
+                            </StackPanel>
+                        </Grid>
                     </Grid>
                 </Flyout>
             </Button.Flyout>

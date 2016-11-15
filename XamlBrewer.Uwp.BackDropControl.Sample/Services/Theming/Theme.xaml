@@ -4,12 +4,12 @@
 
     <!-- Header -->
     <SolidColorBrush x:Key="TitlebarBackgroundBrush"
-                     Color="#10621E" />
+                     Color="MediumSlateBlue" />
     <SolidColorBrush x:Key="StatusbarBackgroundBrush"
-                     Color="#10621E" />
+                     Color="{ThemeResource SystemColorHighlightColor}" />
     <!-- Splitview Pane -->
     <SolidColorBrush x:Key="SplitViewBackgroundBrush"
-                     Color="#AA4139" />
+                     Color="Peru" />
     <SolidColorBrush x:Key="SplitViewForegroundBrush"
                      Color="White" />
     <SolidColorBrush x:Key="SplitViewHighlightBrush"

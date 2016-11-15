@@ -7,11 +7,12 @@
       mc:Ignorable="d">
     <Page.Resources>
         <!-- Custom style for Windows.UI.Xaml.Controls.ContentDialog -->
+        <!-- Gives it a transparent background and adds a BackDrop -->
         <Style TargetType="ContentDialog">
             <Setter Property="Foreground"
                     Value="{ThemeResource SystemControlPageTextBaseHighBrush}" />
             <Setter Property="Background"
-                    Value="{ThemeResource SystemControlBackgroundChromeMediumLowBrush}" />
+                    Value="Transparent" />
             <Setter Property="HorizontalAlignment"
                     Value="Center" />
             <Setter Property="VerticalAlignment"
@@ -38,7 +39,7 @@
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
                                 <controls:BackDrop BlurAmount="15"
-                                                   TintColor="LightPink" />
+                                                   TintColor="BurlyWood" />
                                 <Border x:Name="BackgroundElement"
                                         Background="{TemplateBinding Background}"
                                         FlowDirection="{TemplateBinding FlowDirection}"
@@ -133,39 +134,45 @@
             </Setter>
         </Style>
     </Page.Resources>
-    <!-- ContentDialog template -->
-    <!-- https://msdn.microsoft.com/en-us/library/windows/apps/mt299120.aspx -->
+
     <Grid Background="{StaticResource PageBackgroundBrush}">
         <Image Stretch="Uniform"
                Source="ms-appx:///Assets/butterflies.png" />
 
         <Button VerticalAlignment="Top"
-                HorizontalAlignment="Right"
+                HorizontalAlignment="Left"
                 Margin="20"
                 Content="Open Dialog"
                 Click="ButtonBase_OnClick" />
 
         <ContentDialog x:Name="ContentDialog"
-                       PrimaryButtonText="Accept"
-                       IsPrimaryButtonEnabled="False"
-                       SecondaryButtonText="Cancel"
-                       FullSizeDesired="True"
-                       Background="Transparent">
-
-            <Grid Padding="20">
-                <StackPanel>
+                       PrimaryButtonText="Redeem my prize"
+                       SecondaryButtonText="Tell me more"
+                       FullSizeDesired="True">
+            <ContentDialog.TitleTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="ms-appx:///Assets/trophy.png"
+                               Width="50"
+                               Height="50"
+                               Margin="10 0" />
+                        <TextBlock Text="Congratulations"
+                                   FontSize="32" />
+                    </StackPanel>
+                </DataTemplate>
+            </ContentDialog.TitleTemplate>
+            <Grid>
+                <StackPanel Padding="10">
                     <TextBlock TextWrapping="WrapWholeWords">
-        <Run>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor 
-             congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus 
-             malesuada libero, sit amet commodo magna eros quis urna.</Run><LineBreak />
-        <Run>Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.</Run><LineBreak />
-        <Run>Pellentesque habitant morbi tristique senectus et netus et malesuada fames 
-             ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.</Run><LineBreak />
-        <Run>Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. 
-             Mauris eget neque at sem venenatis eleifend. Ut nonummy.</Run>
+                    <Run>You won. This is not a joke.</Run>
+                    <LineBreak /><LineBreak />
+                    <Span>You are the <Italic><Bold>[Undefined]</Bold></Italic>th unique visitor of this site.</Span>
+                    <LineBreak /><LineBreak />
+                    <Run>We'll need your credit card info to cover shipping of your fantastic prize. Please confirm that you are 18 years or older.</Run>
                     </TextBlock>
-                    <CheckBox x:Name="ConfirmAgeCheckBox"
-                              Content="I am over 13 years of age." />
+                    <CheckBox Content="I am over 17 years of age."
+                              Margin="0 20 0 0" />
+                    <Image Source="ms-appx:///Assets/confetti.png" />
                 </StackPanel>
             </Grid>
         </ContentDialog>
