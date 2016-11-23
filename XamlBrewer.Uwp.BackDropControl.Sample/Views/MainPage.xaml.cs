@@ -20,7 +20,7 @@ namespace XamlBrewer.Uwp.BackDropControl.Sample
             else
             {
                 var color = (byte)(e.NewValue * 2.55);
-                BackDrop.TintColor = Color.FromArgb(128, color, (byte)(255 - color), (byte)(255 - color));
+                BackDrop.TintColor = Color.FromArgb(90, color, (byte)(255 - color), (byte)(255 - color));
             }
         }
     }

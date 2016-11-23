@@ -26,11 +26,25 @@ namespace XamlBrewer.Uwp.Controls
         /// <remarks>Not necessarily an extension method. Just for convenience.</remarks>
         public static Color RandomColor(this UIElement element)
         {
-            byte red = (byte)r.Next(0, 255);
-            byte green = (byte)r.Next(0, 255);
-            byte blue = (byte)r.Next(0, 255);
+            var red = (byte)r.Next(0, 255);
+            var green = (byte)r.Next(0, 255);
+            var blue = (byte)r.Next(0, 255);
 
             return new Color() { A = 255, R = red, G = green, B = blue };
+        }
+
+        /// <summary>
+        /// Returns a random transparent color.
+        /// </summary>
+        /// <remarks>Not necessarily an extension method. Just for convenience.</remarks>
+        public static Color RandomTransparentColor(this UIElement element)
+        {
+            var alpha = (byte) r.Next(0, 127);
+            var red = (byte)r.Next(0, 255);
+            var green = (byte)r.Next(0, 255);
+            var blue = (byte)r.Next(0, 255);
+
+            return new Color() { A = alpha, R = red, G = green, B = blue };
         }
     }
 }

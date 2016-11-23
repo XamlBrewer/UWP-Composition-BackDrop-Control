@@ -13,7 +13,6 @@
 //*********************************************************
 
 using Microsoft.Graphics.Canvas;
-using Microsoft.Graphics.Canvas.Text;
 using Microsoft.Graphics.Canvas.UI.Composition;
 using System;
 using System.Diagnostics;
@@ -67,14 +66,6 @@ namespace XamlBrewer.Uwp.Controls
             _initialized = false;
         }
 
-        public static bool IsInitialized
-        {
-            get
-            {
-                return _initialized;
-            }
-        }
-
         public static async Task<CompositionDrawingSurface> LoadFromUri(Uri uri)
         {
             return await LoadFromUri(uri, Size.Empty);
@@ -84,15 +75,15 @@ namespace XamlBrewer.Uwp.Controls
         {
             Debug.Assert(_initialized);
 
-            CanvasBitmap bitmap = await CanvasBitmap.LoadAsync(_canvasDevice, uri);
-            Size sizeSource = bitmap.Size;
+            var bitmap = await CanvasBitmap.LoadAsync(_canvasDevice, uri);
+            var sizeSource = bitmap.Size;
 
             if (sizeTarget.IsEmpty)
             {
                 sizeTarget = sizeSource;
             }
 
-            CompositionDrawingSurface surface = _compositionDevice.CreateDrawingSurface(sizeTarget,
+            var surface = _compositionDevice.CreateDrawingSurface(sizeTarget,
                                                             DirectXPixelFormat.B8G8R8A8UIntNormalized, DirectXAlphaMode.Premultiplied);
             using (var ds = CanvasComposition.CreateDrawingSession(surface))
             {
@@ -101,34 +92,6 @@ namespace XamlBrewer.Uwp.Controls
             }
 
             return surface;
-        }
-
-        public static CompositionDrawingSurface LoadText(string text, Size sizeTarget, CanvasTextFormat textFormat, Color textColor, Color bgColor)
-        {
-            Debug.Assert(_initialized);
-
-            CompositionDrawingSurface surface = _compositionDevice.CreateDrawingSurface(sizeTarget,
-                                                            DirectXPixelFormat.B8G8R8A8UIntNormalized, DirectXAlphaMode.Premultiplied);
-            using (var ds = CanvasComposition.CreateDrawingSession(surface))
-            {
-                ds.Clear(bgColor);
-                ds.DrawText(text, new Rect(0, 0, sizeTarget.Width, sizeTarget.Height), textColor, textFormat);
-            }
-
-            return surface;
-        }
-
-        public static async Task<CompositionDrawingSurface> LoadFromUri(Uri uri, Size sizeTarget, LoadTimeEffectHandler loadEffectHandler)
-        {
-            Debug.Assert(_initialized);
-
-            if (loadEffectHandler != null)
-            {
-                CanvasBitmap bitmap = await CanvasBitmap.LoadAsync(_canvasDevice, uri);
-                return loadEffectHandler(bitmap, _compositionDevice, sizeTarget);
-            }
-
-            return await LoadFromUri(uri, sizeTarget);
         }
     }
 }

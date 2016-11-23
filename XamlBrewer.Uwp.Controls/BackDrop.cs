@@ -13,10 +13,12 @@ namespace XamlBrewer.Uwp.Controls
     /// </summary>
     public class BackDrop : Control
     {
-        private Compositor _compositor;
+        // Candidate Dependency Properties.
+        private const float SaturationIntensity = 1.75f;
+
+        private readonly Compositor _compositor;
         private readonly SpriteVisual _blurVisual;
         private readonly CompositionBrush _blurBrush;
-        private readonly Visual _rootVisual;
         private readonly CompositionSurfaceBrush _noiseBrush;
 
         /// <summary>
@@ -44,13 +46,13 @@ namespace XamlBrewer.Uwp.Controls
         /// </summary>
         public BackDrop()
         {
-            _rootVisual = ElementCompositionPreview.GetElementVisual(this);
-            Compositor = _rootVisual.Compositor;
-            _blurVisual = Compositor.CreateSpriteVisual();
-            _noiseBrush = Compositor.CreateSurfaceBrush();
+            var rootVisual = ElementCompositionPreview.GetElementVisual(this);
+            _compositor = rootVisual.Compositor;
+            _blurVisual = _compositor.CreateSpriteVisual();
+            _noiseBrush = _compositor.CreateSurfaceBrush();
 
-            CompositionEffectBrush brush = BuildBlurBrush();
-            brush.SetSourceParameter("source", _compositor.CreateBackdropBrush());
+            var brush = BuildBlurBrush();
+            brush.SetSourceParameter("Source", _compositor.CreateBackdropBrush());
             _blurBrush = brush;
             _blurVisual.Brush = _blurBrush;
 
@@ -78,19 +80,6 @@ namespace XamlBrewer.Uwp.Controls
             set { SetValue(TintColorProperty, value); }
         }
 
-        private Compositor Compositor
-        {
-            get
-            {
-                return _compositor;
-            }
-
-            set
-            {
-                _compositor = value;
-            }
-        }
-
         private static void OnBlurAmountChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var backDrop = d as BackDrop;
@@ -98,7 +87,6 @@ namespace XamlBrewer.Uwp.Controls
             if (backDrop == null) return;
 
             backDrop._blurBrush.Properties.InsertScalar("Blur.BlurAmount", (float)(double)e.NewValue);
-            backDrop._rootVisual.Properties.InsertScalar(nameof(BlurAmount), (float)(double)e.NewValue);
         }
 
         private static void OnTintColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -108,17 +96,16 @@ namespace XamlBrewer.Uwp.Controls
             if (backDrop == null) return;
 
             backDrop._blurBrush.Properties.InsertColor("Color.Color", (Color)e.NewValue);
-            backDrop._rootVisual.Properties.InsertColor(nameof(TintColor), (Color)e.NewValue);
         }
 
         private async void OnLoading(FrameworkElement sender, object args)
         {
-            SurfaceLoader.Initialize(Compositor);
+            SurfaceLoader.Initialize(_compositor);
 
             SizeChanged += OnSizeChanged;
             OnSizeChanged(this, null);
 
-            _noiseBrush.Surface = await SurfaceLoader.LoadFromUri(new Uri("ms-appx:///XamlBrewer.Uwp.Controls/Assets/MoreNoise.png"));
+            _noiseBrush.Surface = await SurfaceLoader.LoadFromUri(new Uri("ms-appx:///XamlBrewer.Uwp.Controls/Assets/Noise.jpg"));
             _noiseBrush.Stretch = CompositionStretch.UniformToFill;
         }
 
@@ -144,20 +131,24 @@ namespace XamlBrewer.Uwp.Controls
                 BlurAmount = 0.0f,
                 BorderMode = EffectBorderMode.Hard,
                 Optimization = EffectOptimization.Balanced,
-                Source = new CompositionEffectSourceParameter("source"),
+                Source = new CompositionEffectSourceParameter("Source"),
             };
 
             var blendEffect = new BlendEffect
             {
                 Background = blurEffect,
-                Foreground = new ColorSourceEffect { Name = "Color", Color = Color.FromArgb(64, 255, 255, 255) },
+                Foreground = new ColorSourceEffect()
+                {
+                    Name = "Color",
+                    Color = Color.FromArgb(90, 255, 255, 255)
+                },
                 Mode = BlendEffectMode.SoftLight
             };
 
             var saturationEffect = new SaturationEffect
             {
                 Source = blendEffect,
-                Saturation = 1.75f,
+                Saturation = SaturationIntensity
             };
 
             var finalEffect = new BlendEffect
@@ -167,7 +158,7 @@ namespace XamlBrewer.Uwp.Controls
                 Mode = BlendEffectMode.Screen,
             };
 
-            var factory = Compositor.CreateEffectFactory(
+            var factory = _compositor.CreateEffectFactory(
                 finalEffect,
                 new[] { "Blur.BlurAmount", "Color.Color" });
 
