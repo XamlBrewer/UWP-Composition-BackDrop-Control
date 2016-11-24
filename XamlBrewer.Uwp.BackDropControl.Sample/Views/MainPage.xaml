@@ -11,6 +11,7 @@
                Source="ms-appx:///Assets/butterflies.png" />
         <controls:BackDrop x:Name="BackDrop"
                            BlurAmount="{Binding ElementName=BlurAmountSlider, Path=Value, Mode=TwoWay}"
+                           TintAlpha="{Binding ElementName=TintAlphaSlider, Path=Value, Mode=TwoWay}"
                            Margin="100" />
         <StackPanel VerticalAlignment="Bottom"
                     Margin="100"
@@ -20,6 +21,10 @@
             <Slider x:Name="TintColorSlider"
                     Header="TintColor"
                     ValueChanged="TintColorSlider_OnValueChanged" />
+            <Slider x:Name="TintAlphaSlider"
+                    Maximum="255"
+                    Value="90"
+                    Header="TintAlpha" />
         </StackPanel>
     </Grid>
 </Page>

@@ -11,6 +11,7 @@ namespace XamlBrewer.Uwp.Controls
     /// <summary>
     /// A lightweight control to add blur and tint effect.
     /// </summary>
+    /// <seealso cref="Windows.UI.Xaml.Controls.Control" />
     public class BackDrop : Control
     {
         // Candidate Dependency Properties.
@@ -34,12 +35,22 @@ namespace XamlBrewer.Uwp.Controls
         /// <summary>
         /// The tint color property.
         /// </summary>
-        public static readonly DependencyProperty TintColorProperty = 
+        public static readonly DependencyProperty TintColorProperty =
             DependencyProperty.Register(
-                nameof(TintColor), 
-                typeof(Color), 
-                typeof(BackDrop), 
+                nameof(TintColor),
+                typeof(Color),
+                typeof(BackDrop),
                 new PropertyMetadata(Colors.Transparent, OnTintColorChanged));
+
+        /// <summary>
+        /// The tint alpha property.
+        /// </summary>
+        public static readonly DependencyProperty TintAlphaProperty = 
+            DependencyProperty.Register(
+                nameof(TintAlpha), 
+                typeof(int), 
+                typeof(BackDrop), 
+                new PropertyMetadata(90, OnTintAlphaChanged));
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BackDrop"/> class.
@@ -80,6 +91,15 @@ namespace XamlBrewer.Uwp.Controls
             set { SetValue(TintColorProperty, value); }
         }
 
+        /// <summary>
+        /// Gets or sets the tint alpha.
+        /// </summary>
+        /// <value>The tint alpha.</value>
+        public int TintAlpha
+        {
+            get { return (int)GetValue(TintAlphaProperty); }
+            set { SetValue(TintAlphaProperty, value); }
+        }
         private static void OnBlurAmountChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var backDrop = d as BackDrop;
@@ -95,7 +115,22 @@ namespace XamlBrewer.Uwp.Controls
 
             if (backDrop == null) return;
 
-            backDrop._blurBrush.Properties.InsertColor("Color.Color", (Color)e.NewValue);
+            var color = (Color) e.NewValue;
+            color.A = (byte)backDrop.TintAlpha;
+
+            backDrop._blurBrush.Properties.InsertColor("Color.Color", color);
+        }
+
+        private static void OnTintAlphaChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var backDrop = d as BackDrop;
+
+            if (backDrop == null) return;
+
+            var color = backDrop.TintColor;
+            color.A = (byte)(int) e.NewValue;
+
+            backDrop._blurBrush.Properties.InsertColor("Color.Color", color);
         }
 
         private async void OnLoading(FrameworkElement sender, object args)

@@ -23,5 +23,10 @@ namespace XamlBrewer.Uwp.BackDropControl.Sample
                 BackDrop.TintColor = Color.FromArgb(90, color, (byte)(255 - color), (byte)(255 - color));
             }
         }
+
+        //private void TintAlphaSlider_OnValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        //{
+        //    BackDrop.TintAlpha = (byte) e.NewValue;
+        //}
     }
 }
