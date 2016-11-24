@@ -14,9 +14,6 @@ namespace XamlBrewer.Uwp.Controls
     /// <seealso cref="Windows.UI.Xaml.Controls.Control" />
     public class BackDrop : Control
     {
-        // Candidate Dependency Properties.
-        private const float SaturationIntensity = 1.75f;
-
         private readonly Compositor _compositor;
         private readonly SpriteVisual _blurVisual;
         private readonly CompositionBrush _blurBrush;
@@ -53,6 +50,16 @@ namespace XamlBrewer.Uwp.Controls
                 new PropertyMetadata(90, OnTintAlphaChanged));
 
         /// <summary>
+        /// The saturation intensity property.
+        /// </summary>
+        public static readonly DependencyProperty SaturationIntensityProperty = 
+            DependencyProperty.Register(
+                nameof(SaturationIntensity), 
+                typeof(double), 
+                typeof(BackDrop), 
+                new PropertyMetadata(1.75, OnSaturationIntensityChanged));
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="BackDrop"/> class.
         /// </summary>
         public BackDrop()
@@ -75,6 +82,10 @@ namespace XamlBrewer.Uwp.Controls
             Unloaded += OnUnloaded;
         }
 
+        /// <summary>
+        /// Gets or sets the blur amount.
+        /// </summary>
+        /// <value>The blur amount.</value>
         public double BlurAmount
         {
             get { return (double)GetValue(BlurAmountProperty); }
@@ -100,6 +111,17 @@ namespace XamlBrewer.Uwp.Controls
             get { return (int)GetValue(TintAlphaProperty); }
             set { SetValue(TintAlphaProperty, value); }
         }
+
+        /// <summary>
+        /// Gets or sets the saturation intensity.
+        /// </summary>
+        /// <value>The saturation intensity.</value>
+        public double SaturationIntensity
+        {
+            get { return (double)GetValue(SaturationIntensityProperty); }
+            set { SetValue(SaturationIntensityProperty, value); }
+        }
+
         private static void OnBlurAmountChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var backDrop = d as BackDrop;
@@ -131,6 +153,15 @@ namespace XamlBrewer.Uwp.Controls
             color.A = (byte)(int) e.NewValue;
 
             backDrop._blurBrush.Properties.InsertColor("Color.Color", color);
+        }
+
+        private static void OnSaturationIntensityChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var backDrop = d as BackDrop;
+
+            if (backDrop == null) return;
+
+            backDrop._blurBrush.Properties.InsertScalar("Saturation.Saturation", (float)(double)e.NewValue);
         }
 
         private async void OnLoading(FrameworkElement sender, object args)
@@ -182,8 +213,9 @@ namespace XamlBrewer.Uwp.Controls
 
             var saturationEffect = new SaturationEffect
             {
+                Name = "Saturation",
                 Source = blendEffect,
-                Saturation = SaturationIntensity
+                Saturation = 1.75f
             };
 
             var finalEffect = new BlendEffect
@@ -195,7 +227,7 @@ namespace XamlBrewer.Uwp.Controls
 
             var factory = _compositor.CreateEffectFactory(
                 finalEffect,
-                new[] { "Blur.BlurAmount", "Color.Color" });
+                new[] { "Blur.BlurAmount", "Color.Color", "Saturation.Saturation" });
 
             var brush = factory.CreateBrush();
             brush.SetSourceParameter("NoiseImage", _noiseBrush);

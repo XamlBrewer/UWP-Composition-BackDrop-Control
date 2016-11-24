@@ -12,19 +12,25 @@
         <controls:BackDrop x:Name="BackDrop"
                            BlurAmount="{Binding ElementName=BlurAmountSlider, Path=Value, Mode=TwoWay}"
                            TintAlpha="{Binding ElementName=TintAlphaSlider, Path=Value, Mode=TwoWay}"
+                           SaturationIntensity="{Binding ElementName=SaturationIntensitySlider, Path=Value, Mode=TwoWay}"
                            Margin="100" />
         <StackPanel VerticalAlignment="Bottom"
                     Margin="100"
                     Padding="40 0">
             <Slider x:Name="BlurAmountSlider"
-                    Header="BlurAmount" />
+                    Header="Blur Amount" />
             <Slider x:Name="TintColorSlider"
-                    Header="TintColor"
+                    Header="Tint Color"
                     ValueChanged="TintColorSlider_OnValueChanged" />
             <Slider x:Name="TintAlphaSlider"
                     Maximum="255"
                     Value="90"
-                    Header="TintAlpha" />
+                    Header="Tint Alpha" />
+            <Slider x:Name="SaturationIntensitySlider"
+                    Maximum="2"
+                    StepFrequency=".05"
+                    Value="1.75"
+                    Header="Saturation Intensity" />
         </StackPanel>
     </Grid>
 </Page>
