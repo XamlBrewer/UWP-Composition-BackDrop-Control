@@ -42,21 +42,21 @@ namespace XamlBrewer.Uwp.Controls
         /// <summary>
         /// The tint alpha property.
         /// </summary>
-        public static readonly DependencyProperty TintAlphaProperty = 
+        public static readonly DependencyProperty TintAlphaProperty =
             DependencyProperty.Register(
-                nameof(TintAlpha), 
-                typeof(int), 
-                typeof(BackDrop), 
+                nameof(TintAlpha),
+                typeof(int),
+                typeof(BackDrop),
                 new PropertyMetadata(90, OnTintAlphaChanged));
 
         /// <summary>
         /// The saturation intensity property.
         /// </summary>
-        public static readonly DependencyProperty SaturationIntensityProperty = 
+        public static readonly DependencyProperty SaturationIntensityProperty =
             DependencyProperty.Register(
-                nameof(SaturationIntensity), 
-                typeof(double), 
-                typeof(BackDrop), 
+                nameof(SaturationIntensity),
+                typeof(double),
+                typeof(BackDrop),
                 new PropertyMetadata(1.75, OnSaturationIntensityChanged));
 
         /// <summary>
@@ -137,7 +137,7 @@ namespace XamlBrewer.Uwp.Controls
 
             if (backDrop == null) return;
 
-            var color = (Color) e.NewValue;
+            var color = (Color)e.NewValue;
             color.A = (byte)backDrop.TintAlpha;
 
             backDrop._blurBrush.Properties.InsertColor("Color.Color", color);
@@ -150,7 +150,7 @@ namespace XamlBrewer.Uwp.Controls
             if (backDrop == null) return;
 
             var color = backDrop.TintColor;
-            color.A = (byte)(int) e.NewValue;
+            color.A = (byte)(int)e.NewValue;
 
             backDrop._blurBrush.Properties.InsertColor("Color.Color", color);
         }
@@ -177,8 +177,8 @@ namespace XamlBrewer.Uwp.Controls
 
         private void OnUnloaded(object sender, RoutedEventArgs e)
         {
-            SurfaceLoader.Uninitialize();
             SizeChanged -= OnSizeChanged;
+            // SurfaceLoader.Uninitialize(); // Generates NullReferenceException on stress.
         }
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs e)

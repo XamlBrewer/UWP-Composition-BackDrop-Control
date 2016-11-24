@@ -39,7 +39,7 @@ namespace XamlBrewer.Uwp.Controls
 
             if (!_initialized)
             {
-                _compositor = compositor;
+                 _compositor = compositor;
                 _canvasDevice = new CanvasDevice();
                 _compositionDevice = CanvasComposition.CreateCompositionGraphicsDevice(_compositor, _canvasDevice);
 
