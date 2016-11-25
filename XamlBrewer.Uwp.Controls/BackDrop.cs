@@ -163,8 +163,6 @@ namespace XamlBrewer.Uwp.Controls
 
         private void OnLoading(FrameworkElement sender, object args)
         {
-            SurfaceLoader.Initialize(_compositor);
-
             SizeChanged += OnSizeChanged;
             OnSizeChanged(this, null);
         }
@@ -172,7 +170,6 @@ namespace XamlBrewer.Uwp.Controls
         private void OnUnloaded(object sender, RoutedEventArgs e)
         {
             SizeChanged -= OnSizeChanged;
-            SurfaceLoader.Uninitialize(); 
         }
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs e)
