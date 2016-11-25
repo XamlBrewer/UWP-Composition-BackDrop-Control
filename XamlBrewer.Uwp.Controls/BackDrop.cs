@@ -1,5 +1,4 @@
-﻿using System;
-using Windows.UI;
+﻿using Windows.UI;
 using Windows.UI.Composition;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -17,7 +16,6 @@ namespace XamlBrewer.Uwp.Controls
         private readonly Compositor _compositor;
         private readonly SpriteVisual _blurVisual;
         private readonly CompositionBrush _blurBrush;
-        private readonly CompositionSurfaceBrush _noiseBrush;
 
         /// <summary>
         /// The blur amount property.
@@ -67,7 +65,6 @@ namespace XamlBrewer.Uwp.Controls
             var rootVisual = ElementCompositionPreview.GetElementVisual(this);
             _compositor = rootVisual.Compositor;
             _blurVisual = _compositor.CreateSpriteVisual();
-            _noiseBrush = _compositor.CreateSurfaceBrush();
 
             var brush = BuildBlurBrush();
             brush.SetSourceParameter("Source", _compositor.CreateBackdropBrush());
@@ -164,21 +161,18 @@ namespace XamlBrewer.Uwp.Controls
             backDrop._blurBrush.Properties.InsertScalar("Saturation.Saturation", (float)(double)e.NewValue);
         }
 
-        private async void OnLoading(FrameworkElement sender, object args)
+        private void OnLoading(FrameworkElement sender, object args)
         {
             SurfaceLoader.Initialize(_compositor);
 
             SizeChanged += OnSizeChanged;
             OnSizeChanged(this, null);
-
-            _noiseBrush.Surface = await SurfaceLoader.LoadFromUri(new Uri("ms-appx:///XamlBrewer.Uwp.Controls/Assets/Noise.jpg"));
-            _noiseBrush.Stretch = CompositionStretch.UniformToFill;
         }
 
         private void OnUnloaded(object sender, RoutedEventArgs e)
         {
             SizeChanged -= OnSizeChanged;
-            // SurfaceLoader.Uninitialize(); // Generates NullReferenceException on stress.
+            SurfaceLoader.Uninitialize(); 
         }
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs e)
@@ -218,20 +212,11 @@ namespace XamlBrewer.Uwp.Controls
                 Saturation = 1.75f
             };
 
-            var finalEffect = new BlendEffect
-            {
-                Foreground = new CompositionEffectSourceParameter("NoiseImage"),
-                Background = saturationEffect,
-                Mode = BlendEffectMode.Screen,
-            };
-
             var factory = _compositor.CreateEffectFactory(
-                finalEffect,
+                saturationEffect,
                 new[] { "Blur.BlurAmount", "Color.Color", "Saturation.Saturation" });
 
-            var brush = factory.CreateBrush();
-            brush.SetSourceParameter("NoiseImage", _noiseBrush);
-            return brush;
+            return factory.CreateBrush();
         }
     }
 }

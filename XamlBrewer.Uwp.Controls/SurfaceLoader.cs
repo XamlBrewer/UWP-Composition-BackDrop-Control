@@ -83,12 +83,18 @@ namespace XamlBrewer.Uwp.Controls
                 sizeTarget = sizeSource;
             }
 
-            var surface = _compositionDevice.CreateDrawingSurface(sizeTarget,
-                                                            DirectXPixelFormat.B8G8R8A8UIntNormalized, DirectXAlphaMode.Premultiplied);
+            var surface = _compositionDevice.CreateDrawingSurface(
+                sizeTarget,
+                DirectXPixelFormat.B8G8R8A8UIntNormalized, 
+                DirectXAlphaMode.Premultiplied);
+
             using (var ds = CanvasComposition.CreateDrawingSession(surface))
             {
                 ds.Clear(Color.FromArgb(0, 0, 0, 0));
-                ds.DrawImage(bitmap, new Rect(0, 0, sizeTarget.Width, sizeTarget.Height), new Rect(0, 0, sizeSource.Width, sizeSource.Height));
+                ds.DrawImage(
+                    bitmap, 
+                    new Rect(0, 0, sizeTarget.Width, sizeTarget.Height), 
+                    new Rect(0, 0, sizeSource.Width, sizeSource.Height));
             }
 
             return surface;
