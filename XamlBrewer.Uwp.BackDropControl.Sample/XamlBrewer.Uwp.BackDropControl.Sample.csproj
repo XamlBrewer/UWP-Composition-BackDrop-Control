@@ -172,12 +172,6 @@
       <Name>Windows Mobile Extensions for the UWP</Name>
     </SDKReference>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\XamlBrewer.Uwp.BackDrop\XamlBrewer.Uwp.BackDrop.csproj">
-      <Project>{c4f5fecd-a48d-408a-a5d0-548d283d4257}</Project>
-      <Name>XamlBrewer.Uwp.BackDrop</Name>
-    </ProjectReference>
-  </ItemGroup>
   <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
