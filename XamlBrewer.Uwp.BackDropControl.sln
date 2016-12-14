@@ -5,7 +5,13 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamlBrewer.Uwp.BackDropControl.Sample", "XamlBrewer.Uwp.BackDropControl.Sample\XamlBrewer.Uwp.BackDropControl.Sample.csproj", "{6DB9A16B-F7C4-4C54-95B2-65AD22F2462F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamlBrewer.Uwp.Controls", "XamlBrewer.Uwp.Controls\XamlBrewer.Uwp.Controls.csproj", "{C4F5FECD-A48D-408A-A5D0-548D283D4257}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamlBrewer.Uwp.BackDrop", "XamlBrewer.Uwp.BackDrop\XamlBrewer.Uwp.BackDrop.csproj", "{C4F5FECD-A48D-408A-A5D0-548D283D4257}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{11999D70-66BC-4990-9E9D-DCFE2A499295}"
+	ProjectSection(SolutionItems) = preProject
+		nuget.png = nuget.png
+		XamlBrewer.Uwp.BackDrop.nuspec = XamlBrewer.Uwp.BackDrop.nuspec
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

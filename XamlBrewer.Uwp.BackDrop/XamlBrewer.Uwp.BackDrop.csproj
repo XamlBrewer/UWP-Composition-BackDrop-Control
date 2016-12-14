@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>XamlBrewer.Uwp.Controls</RootNamespace>
-    <AssemblyName>XamlBrewer.Uwp.Controls</AssemblyName>
+    <AssemblyName>XamlBrewer.Uwp.BackDrop</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.14393.0</TargetPlatformVersion>

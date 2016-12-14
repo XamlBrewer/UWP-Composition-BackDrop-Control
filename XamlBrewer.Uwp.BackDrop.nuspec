@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>XamlBrewer.Uwp.BackDrop</id>
+    <version>1.0.0.0</version>
+    <title>Backdrop Control for UWP</title>
+    <authors>Diederik Krols</authors>
+    <owners>xamlbrewer</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <projectUrl>https://github.com/XamlBrewer/UWP-Composition-BackDrop-Control</projectUrl>
+    <iconUrl>https://github.com/XamlBrewer/UWP-Composition-BackDrop-Control/blob/master/nuget.png?raw=true</iconUrl>
+    <description>A control for UWP and XAML apps to add Blur and Tint effect as background for panels.</description>
+    <copyright>© XAMLBrewer. All rights reserved.</copyright>
+    <tags>UWP Controls XAML Composition Blur Tint Saturation</tags>
+    <dependencies>
+      <dependency id="Win2D.uwp" version="1.19.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src=".\XamlBrewer.Uwp.BackDrop\bin\Release\XamlBrewer.Uwp.BackDrop.dll" target="lib\uap10.0" />
+    <file src=".\XamlBrewer.Uwp.BackDrop\bin\Release\XamlBrewer.Uwp.BackDrop.pdb" target="lib\uap10.0" />
+    <file src=".\XamlBrewer.Uwp.BackDrop\bin\Release\XamlBrewer.Uwp.BackDrop.pri" target="lib\uap10.0" />
+  </files>
+</package>
