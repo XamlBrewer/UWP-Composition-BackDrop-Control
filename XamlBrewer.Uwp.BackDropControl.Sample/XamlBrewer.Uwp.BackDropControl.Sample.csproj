@@ -177,10 +177,6 @@
       <Project>{c4f5fecd-a48d-408a-a5d0-548d283d4257}</Project>
       <Name>XamlBrewer.Uwp.Controls</Name>
     </ProjectReference>
-    <ProjectReference Include="..\XamlBrewer.Uwp.SquareOfSquaresControl\XamlBrewer.Uwp.SquareOfSquaresControl.csproj">
-      <Project>{e8beb79f-b04c-44e4-92a3-def89d15980d}</Project>
-      <Name>XamlBrewer.Uwp.SquareOfSquaresControl</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
