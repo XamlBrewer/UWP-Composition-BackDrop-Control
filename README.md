@@ -5,3 +5,8 @@ A lightweight control for UWP and XAML apps to add Blur and Tint effect. To be u
 Based on the Composition API, so requires Win2d.uwp NuGet package.
 
 Works on Anniversary Update and higher.
+
+##Nuget Package
+To install Backdrop Control for UWP, run the following command in the Package Manager Console
+
+PM> `Install-Package XamlBrewer.Uwp.BackDrop`
